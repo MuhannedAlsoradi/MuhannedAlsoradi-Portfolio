@@ -32,3 +32,949 @@
     --on-accent:#FFF8F0; --shadow: 0 20px 50px rgba(120,90,60,0.12);
   }
   /* alternating section backgrounds: hero/odd sections stay on --bg ("light" band), .alt sections use a contrasting darker/deeper band */
+  :root{ --section-alt-bg: #332B22; --nav-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+  html[data-theme="light"]{ --section-alt-bg: #F1E9D8; --nav-shadow: 0 8px 26px rgba(120,90,60,0.12); }
+  section.alt{background:var(--section-alt-bg);}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1100px 600px at 85% -10%, var(--accent-dim), transparent 60%),
+      radial-gradient(900px 500px at -10% 20%, var(--accent-dim), transparent 55%),
+      var(--bg);
+    color:var(--text); line-height:1.7; overflow-x:hidden; transition:background .3s,color .3s;
+  }
+  html[lang="ar"] body{font-family:'IBM Plex Sans Arabic','Cairo',sans-serif;}
+  html[lang="en"] body{font-family:'Inter',sans-serif;}
+  h1,h2,h3,.logo{font-family:'Cairo',sans-serif;}
+  html[lang="en"] h1, html[lang="en"] h2, html[lang="en"] h3, html[lang="en"] .logo{font-family:'Inter',sans-serif;font-weight:800;}
+  .mono{font-family:'JetBrains Mono',monospace;direction:ltr;unicode-bidi:isolate;}
+  a{color:inherit;text-decoration:none;}
+  input,textarea{font-family:inherit;}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  header{position:sticky;top:0;z-index:50;background:color-mix(in srgb, var(--bg) 82%, transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);box-shadow:var(--nav-shadow);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:12px 0;}
+  .logo{font-size:22px;font-weight:800;color:var(--text);letter-spacing:.5px;}
+  .logo span{color:var(--accent);}
+  .nav-links{display:flex;gap:34px;list-style:none;}
+  .nav-links a{font-size:15px;font-weight:600;color:var(--text-muted);transition:color .2s;}
+  .nav-links a:hover{color:var(--accent-light);}
+  .nav-right{display:flex;align-items:center;gap:10px;}
+  .icon-btn{
+    min-width:38px;height:38px;padding:0 10px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--border);background:var(--surface);color:var(--text-muted);cursor:pointer;
+    font-size:13px;font-weight:700;transition:.2s;font-family:inherit;
+  }
+  .icon-btn:hover{border-color:var(--accent);color:var(--accent-light);}
+  .cta{white-space:nowrap;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:14.5px;padding:11px 20px;border-radius:11px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:.2s;font-family:inherit;}
+  .cta:hover{background:var(--accent-light);transform:translateY(-1px);}
+  .cta.ghost{background:transparent;border:1.5px solid var(--border);color:var(--text);}
+  .cta.ghost:hover{border-color:var(--accent);color:var(--accent-light);}
+
+  /* social icon buttons (SVG) */
+  .socials{display:flex;gap:12px;}
+  .socials a{width:42px;height:42px;border-radius:11px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-muted);transition:.2s;}
+  .socials a:hover{border-color:var(--accent);color:var(--accent-light);background:var(--accent-dim);transform:translateY(-2px);}
+  .socials a svg{width:19px;height:19px;fill:currentColor;}
+  .footer-row .socials a{width:38px;height:38px;}
+
+  .hero{padding:90px 0 60px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:center;}
+  .eyebrow-pill{display:inline-block;background:var(--accent-dim);border:1px solid var(--border);color:var(--accent-light);font-size:13.5px;font-weight:600;padding:7px 16px;border-radius:99px;margin-bottom:22px;}
+  .hero h1{font-size:50px;font-weight:900;line-height:1.25;margin-bottom:18px;}
+  .hero h1 .accent{color:var(--accent);}
+  .role-line{display:flex;align-items:center;gap:10px;font-size:19px;color:var(--text-muted);font-weight:600;margin-bottom:20px;}
+  .role-line .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);}
+  .hero p.lead{font-size:16.5px;color:var(--text-muted);max-width:520px;margin-bottom:32px;}
+  .hero-actions{display:flex;gap:14px;margin-bottom:34px;flex-wrap:wrap;}
+
+  .hero-visual{position:relative;display:flex;flex-direction:column;align-items:center;z-index:1;}
+  .avatar-wrap{width:100%;max-width:340px;height:430px;border-radius:170px 170px 24px 24px;background:linear-gradient(160deg,var(--accent),#8A4A32);box-shadow:0 0 0 1px var(--border),0 0 90px 16px var(--accent-dim),0 30px 70px rgba(0,0,0,.35);position:relative;overflow:hidden;z-index:1;margin-top:-38px;}
+  .avatar-inner{width:100%;height:100%;border-radius:170px 170px 20px 20px;overflow:hidden;}
+  .avatar-inner img{width:100%;height:100%;object-fit:cover;}
+  .code-card{position:absolute;z-index:3;top:-58px;right:-18px;background:var(--surface);border:1px solid var(--border);border-radius:14px;width:100%;max-width:230px;box-shadow:var(--shadow);overflow:hidden;}
+  .code-top{display:flex;gap:6px;padding:10px 14px;border-bottom:1px solid var(--border);}
+  .code-top span{width:8px;height:8px;border-radius:50%;background:var(--border);}
+  .code-body{padding:14px 16px;font-size:12px;line-height:1.75;}
+  .code-body .ln{color:var(--text-faint);display:inline-block;width:16px;user-select:none;}
+  .c-kw{color:var(--accent-light);} .c-fn{color:var(--accent);} .c-str{color:#8FAE6E;} .c-com{color:var(--text-faint);} .c-var{color:var(--text);}
+  html[data-theme="light"] .c-str{color:#5C7A3A;}
+  @media(max-width:900px){
+    .avatar-wrap{max-width:290px;height:380px;border-radius:145px 145px 22px 22px;margin-top:-24px;}
+    .avatar-inner{border-radius:145px 145px 18px 18px;}
+    .code-card{max-width:200px;top:-40px;right:-8px;}
+  }
+
+  section{padding:90px 0; scroll-margin-top:88px;}
+  .section-head{margin-bottom:48px;}
+  .kicker{color:var(--accent);font-weight:700;font-size:13.5px;letter-spacing:.5px;margin-bottom:10px;display:block;}
+  .section-head h2{font-size:34px;font-weight:800;}
+  .section-head p{color:var(--text-muted);margin-top:12px;max-width:600px;}
+
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;}
+  .about-grid p{color:var(--text-muted);margin-bottom:16px;font-size:15.5px;}
+  .about-grid strong{color:var(--text);}
+  .fact-list{display:flex;flex-direction:column;gap:16px;}
+  .fact{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;}
+  .fact .num{color:var(--accent);font-weight:800;font-family:'JetBrains Mono';font-size:14px;}
+  .fact .txt b{display:block;font-size:14.5px;color:var(--text);margin-bottom:2px;}
+  .fact .txt span{font-size:13px;color:var(--text-muted);}
+
+  .proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .proj-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;transition:.25s;}
+  .proj-card:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:var(--shadow);}
+  .proj-tag{display:inline-block;font-size:11.5px;font-weight:700;color:var(--accent-light);background:var(--accent-dim);padding:4px 11px;border-radius:99px;margin-bottom:14px;}
+  .proj-card h3{font-size:19px;font-weight:800;margin-bottom:10px;}
+  .proj-card p{font-size:14px;color:var(--text-muted);margin-bottom:16px;min-height:66px;}
+  .proj-stack{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{font-size:11.5px;color:var(--text-muted);border:1px solid var(--border);padding:4px 10px;border-radius:8px;font-family:'JetBrains Mono';direction:ltr;}
+  .proj-for{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-faint);}
+  .proj-for b{color:var(--accent-light);}
+
+  .skills-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .skill-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 18px;text-align:center;transition:.2s;}
+  .skill-card:hover{border-color:var(--accent);background:var(--surface-2);}
+  .skill-card .ic{font-size:26px;margin-bottom:10px;}
+  .skill-card b{font-size:14.5px;display:block;}
+  .skill-card span{font-size:12px;color:var(--text-faint);}
+
+  /* stats */
+  .stats-wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:26px 18px;text-align:center;}
+  .stat-card .stat-num{font-family:'JetBrains Mono';font-size:34px;font-weight:700;color:var(--accent);direction:ltr;display:block;}
+  .stat-card .stat-label{font-size:13px;color:var(--text-muted);margin-top:6px;display:block;}
+
+  /* feedback form */
+  .form-wrap{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+  .form-copy h2{font-size:28px;font-weight:800;margin-bottom:14px;}
+  .form-copy p{color:var(--text-muted);}
+  .form-fields{display:flex;flex-direction:column;gap:14px;}
+  .form-fields input,.form-fields textarea{
+    width:100%;background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;
+    padding:14px 16px;color:var(--text);font-size:14.5px;outline:none;transition:.2s;resize:none;
+  }
+  .form-fields input:focus,.form-fields textarea:focus{border-color:var(--accent);}
+  .form-fields textarea{min-height:120px;}
+  .form-fields button{align-self:flex-start;}
+  @media(max-width:900px){.form-wrap{grid-template-columns:1fr;padding:30px;}}
+
+  .contact-box{background:linear-gradient(135deg,var(--surface),var(--surface-2));border:1px solid var(--border);border-radius:24px;padding:60px;text-align:center;position:relative;overflow:hidden;}
+  .contact-box::before{content:'';position:absolute;width:400px;height:400px;background:radial-gradient(circle,var(--accent-dim),transparent 70%);top:-150px;left:-100px;}
+  .contact-box h2{font-size:32px;font-weight:800;margin-bottom:14px;position:relative;}
+  .contact-box p{color:var(--text-muted);margin-bottom:30px;position:relative;}
+  .contact-actions{display:flex;gap:14px;justify-content:center;position:relative;flex-wrap:wrap;}
+  .contact-box .sub-link{display:inline-block;margin-top:16px;font-size:13.5px;color:var(--text-faint);position:relative;}
+  .contact-box .sub-link:hover{color:var(--accent-light);}
+
+  /* FOOTER — solid accent block */
+  #contact{padding-bottom:50px;}
+  footer{background:var(--accent);color:var(--on-accent);padding:16px 0 10px;margin-top:0;}
+  footer .container{padding:0 18px;}
+  .footer-top{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+  .back-to-top{
+    width:32px;height:32px;border-radius:50%;border:1.5px solid var(--on-accent);background:transparent;
+    color:var(--on-accent);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:14px;transition:.2s;
+  }
+  .back-to-top:hover{background:var(--on-accent);color:var(--accent);}
+
+  /* floating back-to-top: fixed over the whole page, shown once the user scrolls */
+  .back-to-top-float{
+    position:fixed;bottom:26px;left:26px;z-index:60;width:46px;height:46px;border-radius:50%;
+    border:1.5px solid var(--border);background:var(--surface);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;
+    box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(12px);
+    transition:opacity .25s,transform .25s,border-color .2s,color .2s;
+  }
+  .back-to-top-float.show{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .back-to-top-float:hover{border-color:var(--accent);color:var(--accent-light);}
+  @media(max-width:600px){.back-to-top-float{left:16px;bottom:16px;width:42px;height:42px;font-size:16px;}}
+  .footer-nav{display:flex;gap:18px;list-style:none;flex-wrap:wrap;justify-content:center;}
+  .footer-nav a{font-size:12.5px;font-weight:600;opacity:.9;}
+  .footer-nav a:hover{opacity:1;text-decoration:underline;}
+  .footer-logo{font-family:'Cairo',sans-serif;font-size:18px;font-weight:900;letter-spacing:1px;}
+  .footer-socials{display:flex;gap:8px;}
+  .footer-socials a{width:28px;height:28px;border-radius:8px;border:1px solid var(--on-accent);display:flex;align-items:center;justify-content:center;transition:.2s;}
+  .footer-socials a:hover{background:var(--on-accent);color:var(--accent);}
+  .footer-socials a svg{width:13px;height:13px;fill:currentColor;}
+  .footer-divider{width:100%;height:1px;background:color-mix(in srgb, var(--on-accent) 25%, transparent);margin:8px 0;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;opacity:.85;flex-wrap:wrap;gap:8px;}
+  .footer-tag{display:flex;align-items:center;gap:6px;}
+
+  @media(max-width:900px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .about-grid{grid-template-columns:1fr;}
+    .proj-grid{grid-template-columns:1fr 1fr;}
+    .skills-wrap{grid-template-columns:1fr 1fr;}
+    .stats-wrap{grid-template-columns:1fr 1fr;}
+    .hero h1{font-size:36px;}
+  }
+  @media(max-width:600px){
+    .container{padding:0 18px;}
+    .proj-grid{grid-template-columns:1fr;}
+    .skills-wrap{grid-template-columns:1fr 1fr;}
+    .stats-wrap{grid-template-columns:1fr 1fr;}
+    .contact-box{padding:36px 22px;}
+    .code-card{max-width:170px;font-size:11px;top:-30px;right:0;}
+  }
+
+  /* ===== brand logo (mask → follows theme colors) ===== */
+  .brand{display:inline-flex;align-items:center;gap:10px;color:var(--text);}
+  .brand-logo{display:block;height:46px;aspect-ratio:398/160;background:currentColor;
+    -webkit-mask:url("logo-full.png") center/contain no-repeat;mask:url("logo-full.png") center/contain no-repeat;transition:color .2s;}
+  .brand:hover .brand-logo{color:var(--accent);}
+  .footer-brand{display:block;height:46px;aspect-ratio:398/160;background:var(--on-accent);
+    -webkit-mask:url("logo-full.png") center/contain no-repeat;mask:url("logo-full.png") center/contain no-repeat;}
+  @media(max-width:600px){.brand-logo{height:38px;}}
+  @media(max-width:380px){.brand-logo{height:32px;} #cvBtn{padding:8px 9px;font-size:12px;}}
+
+  /* ===== mobile menu ===== */
+  .menu-btn{display:none;}
+  @media(max-width:900px){
+    .menu-btn{display:flex;}
+    .nav-links.open{display:flex;position:absolute;top:100%;inset-inline:0;flex-direction:column;gap:0;
+      background:var(--surface);border-bottom:1px solid var(--border);box-shadow:var(--nav-shadow);padding:8px 18px;}
+    .nav-links.open a{display:block;padding:12px 4px;border-bottom:1px solid var(--border);}
+    .nav-links.open li:last-child a{border-bottom:none;}
+    header{position:sticky;} nav{position:relative;}
+  }
+  @media(max-width:600px){#cvBtn{padding:9px 11px;font-size:12.5px;gap:5px;} .nav-right{gap:6px;} .nav-right .icon-btn{min-width:34px;height:34px;padding:0 8px;}}
+
+  /* ===== services ===== */
+  .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .svc-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:12px;transition:.25s;}
+  .svc-card:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:var(--shadow);}
+  .svc-ic{width:46px;height:46px;border-radius:12px;background:var(--accent-dim);display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .svc-card h3{font-size:19px;font-weight:800;}
+  .svc-card p{font-size:14.5px;color:var(--text-muted);}
+  .svc-card ul{list-style:none;display:flex;flex-direction:column;gap:6px;font-size:13.5px;color:var(--text-muted);}
+  .svc-card li::before{content:'✓';color:var(--accent);font-weight:800;margin-inline-end:8px;}
+  .svc-card .svc-ex{font-size:12.5px;color:var(--text-faint);border-top:1px solid var(--border);padding-top:12px;margin-top:auto;}
+  .svc-card .svc-ex b{color:var(--accent-light);}
+  .svc-link{font-size:14px;font-weight:700;color:var(--accent);align-self:flex-start;}
+  .svc-link:hover{text-decoration:underline;}
+  .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px;counter-reset:st;}
+  .step{background:var(--surface-2);border:1px dashed var(--border);border-radius:14px;padding:18px;}
+  .step::before{counter-increment:st;content:'0' counter(st);font-family:'JetBrains Mono';color:var(--accent);font-weight:700;font-size:13px;display:block;margin-bottom:6px;}
+  .step b{display:block;font-size:15px;margin-bottom:4px;}
+  .step span{font-size:12.5px;color:var(--text-muted);}
+  /* project feature list */
+  .proj-card{display:flex;flex-direction:column;}
+  .proj-card p{min-height:0;margin-bottom:12px;}
+  .proj-feats{list-style:none;display:flex;flex-direction:column;gap:5px;margin-bottom:16px;font-size:13px;color:var(--text-muted);}
+  .proj-feats li::before{content:'•';color:var(--accent);font-weight:900;margin-inline-end:7px;}
+  .proj-for{margin-top:auto;}
+  .proj-card .proj-tag{align-self:flex-start;}
+  .proj-card .proj-stack{margin-bottom:14px;}
+  .proj-card.featured{grid-column:span 2;}
+  .proj-card.featured .proj-feats{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;}
+  /* testimonials */
+  .tst-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+  .tst-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:26px;display:flex;flex-direction:column;gap:14px;position:relative;}
+  .tst-card::before{content:'”';position:absolute;top:6px;inset-inline-end:20px;font-size:70px;line-height:1;color:var(--accent-dim);font-family:Georgia,serif;}
+  .tst-stars{color:#E0A030;letter-spacing:2px;font-size:14px;}
+  .tst-card q{font-size:15px;color:var(--text);quotes:none;}
+  .tst-who{display:flex;align-items:center;gap:12px;margin-top:auto;}
+  .tst-av{width:40px;height:40px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:800;}
+  .tst-who b{display:block;font-size:14px;}
+  .tst-who span{font-size:12.5px;color:var(--text-faint);}
+  .tst-proj{align-self:flex-start;font-size:11.5px;font-weight:700;color:var(--accent-light);background:var(--accent-dim);padding:4px 11px;border-radius:99px;}
+  @media(max-width:900px){.svc-grid{grid-template-columns:1fr;}.process{grid-template-columns:1fr 1fr;}.tst-grid{grid-template-columns:1fr;}.proj-card.featured{grid-column:span 2;}}
+  @media(max-width:600px){.proj-card.featured{grid-column:auto;}.proj-card.featured .proj-feats{grid-template-columns:1fr;}}
+
+  /* ===== active nav link + reveal on scroll ===== */
+  .nav-links a.active{color:var(--accent);}
+  .code-card{max-width:270px;} @media(max-width:600px){.code-card{max-width:210px;}}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+  /* ===== light motion ===== */
+  @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  @keyframes floatCard{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-1deg)}}
+  @keyframes glow{0%,100%{box-shadow:0 0 0 1px var(--border),0 0 70px 10px var(--accent-dim),0 30px 70px rgba(0,0,0,.30)}50%{box-shadow:0 0 0 1px var(--border),0 0 110px 24px var(--accent-dim),0 40px 80px rgba(0,0,0,.25)}}
+  @keyframes blink{50%{opacity:0}}
+  @keyframes pulseDot{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+  @keyframes heroIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  .avatar-wrap{animation:floatY 6s ease-in-out infinite, glow 6s ease-in-out infinite;}
+  .code-card{animation:floatCard 7s ease-in-out infinite;animation-delay:-2s;}
+  .role-line .dot{animation:pulseDot 2s ease-out infinite;}
+  .hero-grid > div:first-child > *{animation:heroIn .7s ease both;}
+  .hero-grid > div:first-child > *:nth-child(2){animation-delay:.08s}
+  .hero-grid > div:first-child > *:nth-child(3){animation-delay:.16s}
+  .hero-grid > div:first-child > *:nth-child(4){animation-delay:.24s}
+  .hero-grid > div:first-child > *:nth-child(5){animation-delay:.32s}
+  .hero-grid > div:first-child > *:nth-child(6){animation-delay:.40s}
+  .svc-ic{transition:transform .3s;} .svc-card:hover .svc-ic{transform:translateY(-3px) rotate(-6deg);}
+  .skill-card .ic{transition:transform .3s;display:inline-block;} .skill-card:hover .ic{transform:scale(1.15) rotate(-6deg);}
+  @media(prefers-reduced-motion:reduce){
+    .avatar-wrap,.code-card,.role-line .dot,.hero-grid > div:first-child > *,#codeGreeting::after{animation:none !important;}.reveal{opacity:1;transform:none;transition:none;} html{scroll-behavior:auto;}}
+  a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+</style>
+</head>
+<body>
+
+<button class="back-to-top-float" id="backToTopFloat" title="Back to top">↑</button>
+
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="brand" aria-label="مهند — Mobile Developer"><span class="brand-logo" aria-hidden="true"></span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" data-i18n="nav_home">الرئيسية</a></li>
+        <li><a href="#about" data-i18n="nav_about">نبذة عني</a></li>
+        <li><a href="#services" data-i18n="nav_services">خدماتي</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">المشاريع</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">المهارات</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn" id="langBtn" aria-label="Language">EN</button>
+        <button class="icon-btn" id="themeBtn" aria-label="Theme">🌙</button>
+        <a class="cta" id="cvBtn" href="Muhanned_Alsoradi_CV.pdf" target="_blank" rel="noopener"><span class="cv-txt" data-i18n="nav_cv_txt">السيرة الذاتية</span> ⬇</a>
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow-pill" data-i18n="eyebrow">🇵🇸 متاح للعمل الحر — أعمل عن بُعد من غزة</span>
+      <div class="role-line"><span class="dot"></span><span data-i18n="role">مطور تطبيقات Flutter</span></div>
+      <h1 data-i18n="hero_title">أنا <span class="accent">مهند</span><br>أبني تطبيقات تحل مشاكل حقيقية</h1>
+      <p class="lead" data-i18n="hero_lead">
+        أطوّر تطبيقات موبايل ولابتوب بـ Flutter للشركات والمحلات والمؤسسات — من فهم فكرتك وتحليل المتطلبات، إلى تطبيق جاهز للنشر يشتغل حتى مع إنترنت ضعيف.
+      </p>
+      <div class="hero-actions">
+        <a class="cta" href="#projects" data-i18n="btn_work">شاهد مشاريعي 💼</a>
+        <a class="cta ghost" href="#services" data-i18n="btn_contact">شو بقدر أقدّملك؟</a>
+      </div>
+      <div class="socials">
+        <a target="_blank" rel="noopener" href="https://wa.me/972598191753" title="WhatsApp">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.07-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.02.79.8-2.95-.19-.3A7.95 7.95 0 0 1 4 12a8 8 0 1 1 8 8zm4.38-5.86c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14-.01-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://github.com/MuhannedAlsoradi" id="ghLink" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.33 1.1 2.9.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.34 9.34 0 0 1 5 0c1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/muhanned-alsoradi-695327244/" id="liLink" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+        </a>
+        <a target="_blank" rel="noopener" href="https://instagram.com/muhanned.code" title="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.23.41.56.21.96.47 1.38.89.42.42.68.82.89 1.38.17.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.23-.21.56-.47.96-.89 1.38-.42.42-.82.68-1.38.89-.42.17-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.23-.41-.56-.21-.96-.47-1.38-.89-.42-.42-.68-.82-.89-1.38-.17-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.23.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.42-.17 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.8.31-1.48.72-2.15 1.4-.68.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.48 1.4 2.15.67.68 1.35 1.09 2.15 1.4.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.31 1.48-.72 2.15-1.4.68-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.8-.72-1.48-1.4-2.15-.67-.68-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 12 8a4 4 0 0 1 0 8.16zm6.4-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="code-card">
+        <div class="code-top"><span></span><span></span><span></span></div>
+        <div class="code-body mono">
+<div><span class="ln">1</span><span class="c-kw">class</span> <span class="c-fn">Dev</span> {</div>
+<div><span class="ln">2</span>&nbsp;&nbsp;<span class="c-kw">final</span> <span class="c-var">greeting</span> = <span class="c-str" id="codeGreeting">'...'</span>;</div>
+<div><span class="ln">3</span>&nbsp;&nbsp;<span class="c-com">// from Gaza</span></div>
+<div><span class="ln">4</span>}</div>
+        </div>
+      </div>
+      <div class="avatar-wrap">
+        <div class="avatar-inner" id="avatarSlot"><img src="avatar.webp" alt="مهند السردي — مطور تطبيقات Flutter" width="560" height="1050" fetchpriority="high" decoding="async"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker" data-i18n="about_kicker">من أنا</span>
+      <h2 data-i18n="about_title">نبذة عني</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p data-i18n="about_p1">أنا <strong>مهند كمال السردي</strong>، طالب في السنة الأخيرة من تخصص <strong>هندسة أنظمة الحاسوب</strong> في جامعة الأزهر بغزة، ومطور تطبيقات موبايل مستقل.</p>
+        <p data-i18n="about_p2">أتخصص في بناء تطبيقات <strong>Flutter</strong> كاملة — بدءًا من جمع المتطلبات وتصميم النظام، مرورًا بواجهات REST وقواعد بيانات SQLite، وصولًا لتطبيقات بمعمارية <strong>BLoC/Cubit</strong> نظيفة وقابلة للتوسّع.</p>
+        <p data-i18n="about_p3">عملت على مشاريع ذات أثر حقيقي: نظام لإدارة مخيمات النزوح كمشروع تخرج، حل مالي يستخدمه تجار ومحلات في غزة، تطبيقين لاتحاد الصناعات الفلسطينية (PFI) ضمن برنامج مدعوم من UNDP، ومتجر رقمي لعميل من السعودية. وعلى صفحتي <strong dir="ltr">@muhanned.code</strong> بشارك محتوى برمجي: شروحات، تجارب من شغلي، ونصائح للي بدهم يبدأوا بالبرمجة.</p>
+      </div>
+      <div class="fact-list">
+        <div class="fact"><span class="num">01</span><div class="txt"><b data-i18n="fact1_b">جامعة الأزهر – غزة</b><span data-i18n="fact1_s">هندسة أنظمة حاسوب، سنة التخرج</span></div></div>
+        <div class="fact"><span class="num">02</span><div class="txt"><b data-i18n="fact2_b">مطور مستقل</b><span data-i18n="fact2_s">عملاء في فلسطين والسعودية وسوريا — عن بُعد</span></div></div>
+        <div class="fact"><span class="num">03</span><div class="txt"><b data-i18n="fact3_b">مطوّر Flutter متدرّب</b><span data-i18n="fact3_s">اتحاد الصناعات الفلسطينية (PFI) — بنيت تطبيقين كاملين من الصفر</span></div></div>
+        <div class="fact"><span class="num">04</span><div class="txt"><b data-i18n="fact4_b">محتوى برمجي</b><span data-i18n="fact4_s">صفحتي <bdi dir="ltr">@muhanned.code</bdi> — شروحات ونصائح برمجية</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker" data-i18n="svc_kicker">خدماتي</span>
+      <h2 data-i18n="svc_title">شو بقدر أعملك؟</h2>
+      <p data-i18n="svc_lead">سواء عندك فكرة جديدة أو تطبيق قائم بدك تطوّره — بشتغل معك من أول نقاش لحد ما يكون التطبيق بإيد المستخدمين.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-ic">📱</div>
+        <h3 data-i18n="svc1_t">تطبيق موبايل كامل</h3>
+        <p data-i18n="svc1_d">من الفكرة للنشر على المتاجر — Android وiOS من كود واحد.</p>
+        <ul data-i18n="svc1_l"><li>تحليل المتطلبات وتصميم الشاشات</li><li>قاعدة بيانات سحابية أو ربط مع نظامك الحالي</li><li>تسجيل دخول، إشعارات، دفع إلكتروني</li><li>رفع التطبيق على Google Play</li></ul>
+        <div class="svc-ex"><span data-i18n="svc_ex">مثال:</span> <b>RexSouq · مأوى</b></div>
+        <a class="svc-link" data-svc="svc1_t" href="#">اطلب الخدمة ←</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">🏪</div>
+        <h3 data-i18n="svc2_t">أنظمة للمحلات والشركات</h3>
+        <p data-i18n="svc2_d">برنامج يشتغل على اللابتوب والجوال لإدارة شغلك اليومي، حتى بدون إنترنت.</p>
+        <ul data-i18n="svc2_l"><li>حسابات الزبائن والموردين والصناديق</li><li>تقارير وتصدير Excel</li><li>نسخ احتياطي واسترجاع</li><li>نظام تفعيل وترخيص للنسخ</li></ul>
+        <div class="svc-ex"><span data-i18n="svc_ex">مثال:</span> <b data-i18n="p2_title">وثيق</b></div>
+        <a class="svc-link" data-svc="svc2_t" href="#">اطلب الخدمة ←</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">🛠️</div>
+        <h3 data-i18n="svc3_t">تطوير وتخصيص تطبيق جاهز</h3>
+        <p data-i18n="svc3_d">عندك سورس كود أو تطبيق قائم؟ بطوّره وبخليه باسمك وبهويتك.</p>
+        <ul data-i18n="svc3_l"><li>تغيير الهوية: اسم، ألوان، أيقونات، شاشة البداية</li><li>دعم كامل للعربي واتجاه RTL</li><li>إضافة ميزات جديدة وإصلاح الأخطاء</li><li>تحسين الأداء وتنظيم الكود</li></ul>
+        <div class="svc-ex"><span data-i18n="svc_ex">مثال:</span> <b data-i18n="nidal_title">نضال</b></div>
+<a class="svc-link" data-svc="svc3_t" href="#">اطلب الخدمة ←</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-ic">🗺️</div>
+        <h3 data-i18n="svc4_t">تطبيقات للمؤسسات وفرق العمل</h3>
+        <p data-i18n="svc4_d">أدوات لفرق العمل الميداني لجمع البيانات ومتابعة الطلبات من الموقع.</p>
+        <ul data-i18n="svc4_l"><li>خرائط جوجل وتحديد المواقع</li><li>نماذج مسح وحفظ محلي بدون إنترنت</li><li>صلاحيات حسب دور المستخدم</li><li>تقارير PDF بالعربي</li></ul>
+        <div class="svc-ex"><span data-i18n="svc_ex">مثال:</span> <b>ميدان · IDA Owners</b></div>
+        <a class="svc-link" data-svc="svc4_t" href="#">اطلب الخدمة ←</a>
+      </div>
+    </div>
+    <div class="process">
+      <div class="step"><b data-i18n="st1_b">نفهم الفكرة</b><span data-i18n="st1_s">مكالمة قصيرة نحدد فيها المطلوب والميزانية</span></div>
+      <div class="step"><b data-i18n="st2_b">التصميم والخطة</b><span data-i18n="st2_s">شاشات أولية وجدول تسليم واضح</span></div>
+      <div class="step"><b data-i18n="st3_b">التطوير</b><span data-i18n="st3_s">نسخ تجريبية أولًا بأول تجربها بنفسك</span></div>
+      <div class="step"><b data-i18n="st4_b">التسليم والدعم</b><span data-i18n="st4_s">نشر التطبيق ومتابعة بعد التسليم</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker" data-i18n="proj_kicker">أعمالي</span>
+      <h2 data-i18n="proj_title">مشاريع مختارة</h2>
+      <p data-i18n="proj_lead">تطبيقات بنيتها من الصفر — شو بتعمل، ولمين.</p>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card featured">
+        <span class="proj-tag" data-i18n="p2_tag"></span>
+        <h3 data-i18n="p2_title">وثيق</h3>
+        <p data-i18n="p2_desc"></p>
+        <ul class="proj-feats" data-i18n="p2_feats"><li>إدارة الحوالات الواردة والصادرة</li><li>حسابات الزبائن والموردين</li><li>حسابات بنكية ونقدية بأرصدة تتحدّث تلقائيًا</li><li>تسوية بنكية وتقارير Excel</li><li>نسخ احتياطي واسترجاع</li><li>تجربة مجانية 3 أيام ثم نسخة مدى الحياة</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">SQLite</span><span class="chip">Cubit</span><span class="chip">Windows</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="p2_for"></b></div>
+      </div>
+
+<div class="proj-card">
+<span class="proj-tag" data-i18n="nidal_tag"></span>
+<h3 data-i18n="nidal_title">نضال</h3>
+<p data-i18n="nidal_desc"></p>
+<ul class="proj-feats" data-i18n="nidal_feats"></ul>
+<div class="proj-stack"><span class="chip">Flutter</span><span class="chip">REST API</span><span class="chip">RTL</span></div>
+<div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="nidal_for"></b></div>
+</div>
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="p1_tag"></span>
+        <h3 data-i18n="p1_title">مأوى</h3>
+        <p data-i18n="p1_desc"></p>
+        <ul class="proj-feats" data-i18n="p1_feats"><li>إشعارات فورية لكل مستخدم</li><li>تقارير PDF بالعربي</li><li>صلاحيات حسب الدور</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">Cubit</span><span class="chip">Cloudinary</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="p1_for"></b></div>
+      </div>
+
+
+
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="rex_tag"></span>
+        <h3>RexSouq</h3>
+        <p data-i18n="rex_desc"></p>
+        <ul class="proj-feats" data-i18n="rex_feats"><li>شراء أكثر من منتج بطلب واحد</li><li>كوبونات وخصومات</li><li>STC Pay، مدى، Apple Pay، PayPal، وبطاقات</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">Figma</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="rex_for"></b></div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="p5_tag"></span>
+        <h3 data-i18n="p5_title">تحفيظ</h3>
+        <p data-i18n="p5_desc"></p>
+        <ul class="proj-feats" data-i18n="p5_feats"><li>تسجيل الحفظ والمراجعة لكل طالب</li><li>متابعة تقدّم الطلاب أولًا بأول</li><li>واجهة بسيطة للمحفّظين</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">SQLite</span><span class="chip">Cubit</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="p5_for"></b></div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="p3_tag"></span>
+        <h3 data-i18n="p3_title">ميدان</h3>
+        <p data-i18n="p3_desc"></p>
+        <ul class="proj-feats" data-i18n="p3_feats"><li>خريطة مع تجميع العلامات</li><li>حفظ محلي للبيانات</li><li>شاشة تفاصيل لكل طلب</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">Google Maps</span><span class="chip">SQLite</span><span class="chip">Cubit</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="p3_for"></b></div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="ida_tag"></span>
+        <h3>IDA Owners</h3>
+        <p data-i18n="ida_desc"></p>
+        <ul class="proj-feats" data-i18n="ida_feats"><li>تسجيل دخول برمز OTP</li><li>تقديم المطالبات عبر API</li><li>متابعة حالة كل مطالبة</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">REST API</span><span class="chip">Cubit</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="ida_for"></b></div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="brainy_tag"></span>
+        <h3>BrainyChat</h3>
+        <p data-i18n="brainy_desc"></p>
+        <ul class="proj-feats" data-i18n="brainy_feats"><li>محادثة فورية مع الذكاء الاصطناعي</li><li>واجهة تدعم العربي</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">AI API</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="brainy_for"></b></div>
+      </div>
+      <div class="proj-card">
+        <span class="proj-tag" data-i18n="tasko_tag"></span>
+        <h3>Taskoo</h3>
+        <p data-i18n="tasko_desc"></p>
+        <ul class="proj-feats" data-i18n="tasko_feats"><li>ترتيب المهام حسب الأولوية</li><li>متابعة الإنجاز اليومي</li></ul>
+        <div class="proj-stack"><span class="chip">Flutter</span><span class="chip">Cubit</span></div>
+        <div class="proj-for"><span data-i18n="for_label">لمن؟</span> <b data-i18n="tasko_for"></b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="testimonials" class="alt" hidden>
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker" data-i18n="tst_kicker">آراء العملاء</span>
+      <h2 data-i18n="tst_title">شو قالوا عن الشغل</h2>
+    </div>
+    <div class="tst-grid" id="tstGrid"></div>
+  </div>
+</section>
+
+<section id="skills" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker" data-i18n="skills_kicker">الأدوات</span>
+      <h2 data-i18n="skills_title">المهارات التقنية</h2>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-card"><div class="ic">🎯</div><b>Flutter & Dart</b><span data-i18n="s1">موبايل ولابتوب من كود واحد</span></div>
+      <div class="skill-card"><div class="ic">📡</div><b data-i18n="s2b">وضع عدم اتصال (Offline-First)</b><span data-i18n="s2">عمل التطبيق حتى بدون إنترنت مستقر</span></div>
+      <div class="skill-card"><div class="ic">🧩</div><b>BLoC / Cubit</b><span data-i18n="s3">إدارة الحالة بمعمارية نظيفة</span></div>
+      <div class="skill-card"><div class="ic">🗄️</div><b data-i18n="s4b">قواعد البيانات</b><span data-i18n="s4">سحابية ومحلية، تشتغل حتى بدون إنترنت</span></div>
+      <div class="skill-card"><div class="ic">🔌</div><b>REST APIs</b><span data-i18n="s5">ربط التطبيقات بالخوادم</span></div>
+      <div class="skill-card"><div class="ic">🎨</div><b data-i18n="s6b">Figma & تصميم الأنظمة</b><span data-i18n="s6">من تحليل المتطلبات للشاشات</span></div>
+      <div class="skill-card"><div class="ic">⚙️</div><b>Git & CI/CD</b><span data-i18n="s7">GitHub Actions لبناء الـ APK</span></div>
+      <div class="skill-card"><div class="ic">🌐</div><b data-i18n="s8b">واجهات RTL عربية</b><span data-i18n="s8">تجارب مصممة للمستخدم العربي</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="stats">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker" data-i18n="stats_kicker">بالأرقام</span>
+      <h2 data-i18n="stats_title">لمحة سريعة</h2>
+    </div>
+    <div class="stats-wrap">
+      <div class="stat-card"><span class="stat-num">11+</span><span class="stat-label" data-i18n="stat1">مشاريع منجزة بالكامل</span></div>
+      <div class="stat-card"><span class="stat-num">9</span><span class="stat-label" data-i18n="stat2">تطبيقات معروضة هنا</span></div>
+      <div class="stat-card"><span class="stat-num">3</span><span class="stat-label" data-i18n="stat3">دول فيها عملاء</span></div>
+      <div class="stat-card"><span class="stat-num">5</span><span class="stat-label" data-i18n="stat4">عملاء شاركوا رأيهم</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="alt">
+  <div class="container">
+    <div class="form-wrap">
+      <div class="form-copy">
+        <h2 data-i18n="form_title">اترك رسالة</h2>
+        <p data-i18n="form_lead">اكتب اسمك ورسالتك، وضغطة زر بتوصلني مباشرة على واتساب.</p>
+      </div>
+      <form class="form-fields" id="waForm">
+        <input type="text" id="fName" data-i18n-ph="ph_name" placeholder="الاسم" required>
+        <input type="email" id="fEmail" data-i18n-ph="ph_email" placeholder="البريد الالكتروني - اختياري">
+        <textarea id="fMsg" data-i18n-ph="ph_msg" placeholder="رسالتك هنا..." required></textarea>
+        <button type="submit" class="cta" data-i18n="form_send">إرسال 📤</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <ul class="footer-nav">
+        <li><a href="#home" data-i18n="nav_home">الرئيسية</a></li>
+        <li><a href="#about" data-i18n="nav_about">نبذة عني</a></li>
+        <li><a href="#services" data-i18n="nav_services">خدماتي</a></li>
+        <li><a href="#projects" data-i18n="nav_projects">المشاريع</a></li>
+        <li><a href="#skills" data-i18n="nav_skills">المهارات</a></li>
+      </ul>
+      <a href="#home" class="footer-brand" role="img" aria-label="مهند — Mobile Developer"></a>
+      <div class="footer-socials">
+        <a target="_blank" rel="noopener" href="https://wa.me/972598191753" title="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.35 5.07L2 22l5.07-1.32A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.02.79.8-2.95-.19-.3A7.95 7.95 0 0 1 4 12a8 8 0 1 1 8 8zm4.38-5.86c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.02-.38-1.94-1.2-.72-.64-1.2-1.44-1.34-1.68-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14-.01-.3-.01-.46-.01s-.42.06-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.7 2.6 4.12 3.64.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28z"/></svg></a>
+        <a target="_blank" rel="noopener" href="https://github.com/MuhannedAlsoradi" id="ghLink2" title="GitHub"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.9-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.55 2.33 1.1 2.9.84.09-.66.35-1.1.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.34 9.34 0 0 1 5 0c1.9-1.33 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg></a>
+        <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/muhanned-alsoradi-695327244/" id="liLink2" title="LinkedIn"><svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.15 1.45-2.15 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+        <a target="_blank" rel="noopener" href="https://instagram.com/muhanned.code" title="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.24 2.23.41.56.21.96.47 1.38.89.42.42.68.82.89 1.38.17.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.24 1.8-.41 2.23-.21.56-.47.96-.89 1.38-.42.42-.82.68-1.38.89-.42.17-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.24-2.23-.41-.56-.21-.96-.47-1.38-.89-.42-.42-.68-.82-.89-1.38-.17-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.24-1.8.41-2.23.21-.56.47-.96.89-1.38.42-.42.82-.68 1.38-.89.42-.17 1.06-.36 2.23-.41 1.27-.06 1.65-.07 4.85-.07M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.8.31-1.48.72-2.15 1.4-.68.67-1.09 1.35-1.4 2.15-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.8.72 1.48 1.4 2.15.67.68 1.35 1.09 2.15 1.4.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.8-.31 1.48-.72 2.15-1.4.68-.67 1.09-1.35 1.4-2.15.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.8-.72-1.48-1.4-2.15-.67-.68-1.35-1.09-2.15-1.4-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 12 8a4 4 0 0 1 0 8.16zm6.4-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-divider"></div>
+    <div class="footer-bottom">
+      <span data-i18n="footer_txt">© 2026 مهند كمال السردي — جميع الحقوق محفوظة</span>
+      <span class="footer-tag"><span data-i18n="footer_made">صُنع في غزة بـ</span> 🧡</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const dict = {
+    ar:{
+      nav_services:"خدماتي",
+      svc_kicker:"خدماتي",
+      svc_title:"شو بقدر أعملك؟",
+      svc_lead:"سواء عندك فكرة جديدة أو تطبيق قائم بدك تطوّره — بشتغل معك من أول نقاش لحد ما يكون التطبيق بإيد المستخدمين.",
+      svc1_t:"تطبيق موبايل كامل",
+      svc1_d:"من الفكرة للنشر على المتاجر — Android وiOS من كود واحد.",
+      svc1_l:"<li>تحليل المتطلبات وتصميم الشاشات</li><li>قاعدة بيانات سحابية أو ربط مع نظامك الحالي</li><li>تسجيل دخول، إشعارات، دفع إلكتروني</li><li>رفع التطبيق على Google Play</li>",
+      svc2_t:"أنظمة للمحلات والشركات",
+      svc2_d:"برنامج يشتغل على اللابتوب والجوال لإدارة شغلك اليومي، حتى بدون إنترنت.",
+      svc2_l:"<li>حسابات الزبائن والموردين والصناديق</li><li>تقارير وتصدير Excel</li><li>نسخ احتياطي واسترجاع</li><li>نظام تفعيل وترخيص للنسخ</li>",
+      svc3_t:"تطوير وتخصيص تطبيق جاهز",
+      svc3_d:"عندك سورس كود أو تطبيق قائم؟ بطوّره وبخليه باسمك وبهويتك.",
+      svc3_l:"<li>تغيير الهوية: اسم، ألوان، أيقونات، شاشة البداية</li><li>دعم كامل للعربي واتجاه RTL</li><li>إضافة ميزات جديدة وإصلاح الأخطاء</li><li>تحسين الأداء وتنظيم الكود</li>",
+      svc4_t:"تطبيقات للمؤسسات وفرق العمل",
+      svc4_d:"أدوات لفرق العمل الميداني لجمع البيانات ومتابعة الطلبات من الموقع.",
+      svc4_l:"<li>خرائط جوجل وتحديد المواقع</li><li>نماذج مسح وحفظ محلي بدون إنترنت</li><li>صلاحيات حسب دور المستخدم</li><li>تقارير PDF بالعربي</li>",
+      svc_ex:"مثال:",
+      svc_cta:"اطلب الخدمة ←",
+      st1_b:"نفهم الفكرة",
+      st1_s:"مكالمة قصيرة نحدد فيها المطلوب والميزانية",
+      st2_b:"التصميم والخطة",
+      st2_s:"شاشات أولية وجدول تسليم واضح",
+      st3_b:"التطوير",
+      st3_s:"نسخ تجريبية أولًا بأول تجربها بنفسك",
+      st4_b:"التسليم والدعم",
+      st4_s:"نشر التطبيق ومتابعة بعد التسليم",
+      tst_kicker:"آراء العملاء",
+      tst_title:"شو قالوا عن الشغل",
+      tst_project:"المشروع:",
+      p2_tag:"مشروع تجاري · قيد الاستخدام",
+      p2_desc:"حل رقمي لإدارة الوضع المالي للمحلات والتجار في غزة، يشتغل على الجوال واللابتوب ومصمّم ليعمل بدون إنترنت.",
+      p2_feats:"<li>إدارة الحوالات الواردة والصادرة</li><li>حسابات الزبائن والموردين</li><li>حسابات بنكية ونقدية بأرصدة تتحدّث تلقائيًا</li><li>تسوية بنكية وتقارير Excel</li><li>نسخ احتياطي واسترجاع</li><li>تجربة مجانية 3 أيام ثم نسخة مدى الحياة</li>",
+      p2_for:"تجار ومحلات في غزة",
+      p1_tag:"مشروع تخرج",
+      p1_desc:"نظام لإدارة مخيمات النزوح بثلاث أدوار: الإدارة، المتطوعين، والنازحين.",
+      p1_feats:"<li>إشعارات فورية لكل مستخدم</li><li>تقارير PDF بالعربي</li><li>صلاحيات حسب الدور</li>",
+      p1_for:"مؤسسات إنسانية وإدارات المخيمات",
+      rex_tag:"متجر إلكتروني · عميل من السعودية",
+      rex_desc:"متجر للمنتجات الرقمية والألعاب، مثل شحن شدات ببجي وباقات الجيمنج، لأندرويد وiOS.",
+      rex_feats:"<li>شراء أكثر من منتج بطلب واحد</li><li>كوبونات وخصومات</li><li>STC Pay، مدى، Apple Pay، PayPal، وبطاقات</li>",
+      rex_for:"اللاعبين وعشاق الجيمنج",
+      p5_tag:"مشروع مجتمعي",
+      p5_desc:"نظام لإدارة حلقات تحفيظ القرآن الكريم في مساجد قطاع غزة.",
+      p5_feats:"<li>تسجيل الحفظ والمراجعة لكل طالب</li><li>متابعة تقدّم الطلاب أولًا بأول</li><li>واجهة بسيطة للمحفّظين</li>",
+      p5_for:"المساجد ومراكز التحفيظ",
+      p3_tag:"اتحاد الصناعات الفلسطينية · UNDP",
+      p3_desc:"تطبيق للباحثين والمفتشين الميدانيين لجمع البيانات حسب الموقع.",
+      p3_feats:"<li>خريطة مع تجميع العلامات</li><li>حفظ محلي للبيانات</li><li>شاشة تفاصيل لكل طلب</li>",
+      p3_for:"اتحاد الصناعات الفلسطينية (PFI)",
+      ida_tag:"اتحاد الصناعات الفلسطينية · UNDP",
+      ida_desc:"تطبيق لأصحاب المنشآت المتضررة لتقديم مطالبات الأضرار ومتابعتها.",
+      ida_feats:"<li>تسجيل دخول برمز OTP</li><li>تقديم المطالبات عبر API</li><li>متابعة حالة كل مطالبة</li>",
+      ida_for:"أصحاب المنشآت المتضررة",
+      brainy_tag:"ذكاء اصطناعي",
+      brainy_desc:"تطبيق محادثة ذكي يجاوب على أسئلتك ويساعدك بمهامك اليومية.",
+      brainy_feats:"<li>محادثة فورية مع الذكاء الاصطناعي</li><li>واجهة تدعم العربي</li>",
+      brainy_for:"كل من يبحث عن مساعد ذكي",
+      tasko_tag:"تطبيق إنتاجية",
+      tasko_desc:"تطبيق ذكي لإدارة المهام والوقت.",
+      tasko_feats:"<li>ترتيب المهام حسب الأولوية</li><li>متابعة الإنجاز اليومي</li>",
+      tasko_for:"الأفراد والفرق",
+nidal_title:"نضال",
+nidal_tag:"منصة إعلانات مبوّبة · سوريا",
+nidal_desc:"منصة إعلانات مبوّبة سورية على Android وiOS. بنيت تطبيق الموبايل بالشراكة مع محمد زملط، اللي طوّر السيرفر ولوحة التحكم والموقع.",
+nidal_feats:"<li>واجهة وتجربة مستخدم كاملة بـ Flutter</li><li>ربط التطبيق مع الـ API والخادم</li><li>هوية جديدة: شعار، ألوان، وشاشة بداية</li><li>دعم كامل للعربي واتجاه RTL</li>",
+nidal_for:"البائعون والمشترون في السوق السوري",
+      nav_home:"الرئيسية", nav_about:"نبذة عني", nav_projects:"المشاريع", nav_skills:"المهارات", nav_cv_txt:"السيرة الذاتية",
+      eyebrow:"🇵🇸 متاح للعمل الحر — أعمل عن بُعد من غزة",
+      role:"مطور تطبيقات Flutter",
+      hero_title:'أنا <span class="accent">مهند</span><br>أبني تطبيقات تحل مشاكل حقيقية',
+      hero_lead:"أطوّر تطبيقات موبايل ولابتوب بـ Flutter للشركات والمحلات والمؤسسات — من فهم فكرتك وتحليل المتطلبات، إلى تطبيق جاهز للنشر يشتغل حتى مع إنترنت ضعيف.",
+      btn_work:"شاهد مشاريعي 💼", btn_contact:"شو بقدر أقدّملك؟",
+      about_kicker:"من أنا", about_title:"نبذة عني",
+      about_p1:'أنا <strong>مهند كمال السردي</strong>، طالب في السنة الأخيرة من تخصص <strong>هندسة أنظمة الحاسوب</strong> في جامعة الأزهر بغزة، ومطور تطبيقات موبايل مستقل.',
+      about_p2:'أتخصص في بناء تطبيقات <strong>Flutter</strong> كاملة — بدءًا من جمع المتطلبات وتصميم النظام، مرورًا بواجهات REST وقواعد بيانات SQLite، وصولًا لتطبيقات بمعمارية <strong>BLoC/Cubit</strong> نظيفة وقابلة للتوسّع.',
+      about_p3:'عملت على مشاريع ذات أثر حقيقي: نظام لإدارة مخيمات النزوح كمشروع تخرج، حل مالي يستخدمه تجار ومحلات في غزة، تطبيقين لاتحاد الصناعات الفلسطينية (PFI) ضمن برنامج مدعوم من UNDP، ومتجر رقمي لعميل من السعودية. وعلى صفحتي <strong dir="ltr">@muhanned.code</strong> بشارك محتوى برمجي: شروحات، تجارب من شغلي، ونصائح للي بدهم يبدأوا بالبرمجة.',
+      fact1_b:"جامعة الأزهر – غزة", fact1_s:"هندسة أنظمة حاسوب، سنة التخرج",
+      fact2_b:"مطور مستقل", fact2_s:"عملاء في فلسطين والسعودية وسوريا — عن بُعد",
+      fact3_b:"مطوّر Flutter متدرّب", fact3_s:"اتحاد الصناعات الفلسطينية (PFI) — بنيت تطبيقين كاملين من الصفر",
+      fact4_b:"محتوى برمجي", fact4_s:"صفحتي <bdi dir='ltr'>@muhanned.code</bdi> — شروحات ونصائح برمجية",
+      proj_kicker:"أعمالي", proj_title:"مشاريع مختارة", proj_lead:"تطبيقات بنيتها من الصفر — شو بتعمل، ولمين.",
+      p1_title:"مأوى",
+      p2_title:"وثيق",
+      p5_title:"تحفيظ",
+      p3_title:"ميدان",
+      soon_tag:"قيد التوثيق", soon_desc:"سيتم إضافة تفاصيل هذا المشروع قريبًا.", for_label:"لمن؟",
+      skills_kicker:"الأدوات", skills_title:"المهارات التقنية",
+      s1:"موبايل ولابتوب من كود واحد", s2b:"وضع عدم اتصال (Offline-First)", s2:"عمل التطبيق حتى بدون إنترنت مستقر",
+      s3:"إدارة الحالة بمعمارية نظيفة", s4b:"قواعد البيانات", s4:"سحابية ومحلية، تشتغل حتى بدون إنترنت", s5:"ربط التطبيقات بالخوادم",
+      s6b:"Figma & تصميم الأنظمة", s6:"من تحليل المتطلبات للشاشات", s7:"GitHub Actions لبناء الـ APK",
+      s8b:"واجهات RTL عربية", s8:"تجارب مصممة للمستخدم العربي",
+      stats_kicker:"بالأرقام", stats_title:"لمحة سريعة",
+      stat1:"مشاريع منجزة بالكامل", stat2:"تطبيقات معروضة هنا", stat3:"دول فيها عملاء", stat4:"عملاء شاركوا رأيهم",
+      form_title:"اترك رسالة", form_lead:"اكتب اسمك ورسالتك، وضغطة زر بتوصلني مباشرة على واتساب.",
+      ph_name:"الاسم", ph_email:"البريد الالكتروني - اختياري", ph_msg:"رسالتك هنا...", form_send:"إرسال 📤",
+      contact_title:"عندك فكرة تطبيق؟ لنبنيها سوا", contact_lead:"متاح حاليًا لمشاريع مستقلة عن بُعد.",
+      contact_whatsapp:"تواصل الآن 📱", contact_ig:"أو تابعني على إنستغرام",
+      footer_txt:"© 2026 مهند كمال السردي — جميع الحقوق محفوظة", footer_made:"صُنع في غزة بـ"
+    },
+    en:{
+      nav_services:"Services",
+      svc_kicker:"Services",
+      svc_title:"What can I build for you?",
+      svc_lead:"Whether it's a new idea or an existing app you want to grow — I work with you from the first chat until the app is in your users' hands.",
+      svc1_t:"Full mobile app",
+      svc1_d:"From idea to store release — Android and iOS from one codebase.",
+      svc1_l:"<li>Requirements analysis & screen design</li><li>Cloud database or integration with your existing system</li><li>Login, notifications, online payments</li><li>Publishing on Google Play</li>",
+      svc2_t:"Systems for shops & businesses",
+      svc2_d:"Software for laptop and phone to run your daily operations — even offline.",
+      svc2_l:"<li>Customer, supplier and cash accounts</li><li>Reports & Excel export</li><li>Backup & restore</li><li>Activation & licensing for copies</li>",
+      svc3_t:"Customize an existing app",
+      svc3_d:"Have source code or a live app? I'll extend it and make it yours.",
+      svc3_l:"<li>Rebranding: name, colors, icons, splash</li><li>Full Arabic & RTL support</li><li>New features and bug fixes</li><li>Performance and code cleanup</li>",
+      svc4_t:"Apps for organizations & field teams",
+      svc4_d:"Tools for field teams to collect data and track requests on site.",
+      svc4_l:"<li>Google Maps & geolocation</li><li>Survey forms with offline storage</li><li>Role-based permissions</li><li>Arabic PDF reports</li>",
+      svc_ex:"Example:",
+      svc_cta:"Request this service →",
+      st1_b:"Understand the idea",
+      st1_s:"A short call to define scope and budget",
+      st2_b:"Design & plan",
+      st2_s:"Initial screens and a clear delivery schedule",
+      st3_b:"Development",
+      st3_s:"Regular test builds you can try yourself",
+      st4_b:"Delivery & support",
+      st4_s:"Release and follow-up after handover",
+      tst_kicker:"Testimonials",
+      tst_title:"What clients say",
+      tst_project:"Project:",
+      p2_tag:"Commercial · In use",
+      p2_desc:"A digital solution for managing the finances of shops and merchants in Gaza — runs on phone and laptop, built to work offline.",
+      p2_feats:"<li>Incoming & outgoing transfer management</li><li>Customer and supplier accounts</li><li>Bank & cash accounts with auto-updating balances</li><li>Bank reconciliation and Excel reports</li><li>Backup & restore</li><li>3-day free trial, then a lifetime license</li>",
+      p2_for:"Merchants & shops in Gaza",
+      p1_tag:"Graduation Project",
+      p1_desc:"A displacement-camp management system with three roles: admins, volunteers and displaced residents.",
+      p1_feats:"<li>Real-time per-user notifications</li><li>Arabic PDF reports</li><li>Role-based access</li>",
+      p1_for:"Humanitarian orgs & camp administrations",
+      rex_tag:"E-commerce · Client in Saudi Arabia",
+      rex_desc:"A store for digital products and games — PUBG UC top-ups and gaming bundles — on Android and iOS.",
+      rex_feats:"<li>Multi-item checkout</li><li>Coupons and discounts</li><li>STC Pay, Mada, Apple Pay, PayPal and cards</li>",
+      rex_for:"Gamers & gaming enthusiasts",
+      p5_tag:"Community Project",
+      p5_desc:"A system for managing Quran memorization circles in mosques across the Gaza Strip.",
+      p5_feats:"<li>Log each student's memorization and revision</li><li>Track student progress over time</li><li>Simple interface for teachers</li>",
+      p5_for:"Mosques & memorization centers",
+      p3_tag:"Palestinian Federation of Industries · UNDP",
+      p3_desc:"An app for field researchers and inspectors to collect location-based data.",
+      p3_feats:"<li>Map with marker clustering</li><li>Local data persistence</li><li>Request details screen</li>",
+      p3_for:"Palestinian Federation of Industries (PFI)",
+      ida_tag:"Palestinian Federation of Industries · UNDP",
+      ida_desc:"An app for owners of damaged facilities to submit and follow their damage claims.",
+      ida_feats:"<li>OTP sign-in</li><li>Claims submitted via REST API</li><li>Track the status of each claim</li>",
+      ida_for:"Owners of damaged facilities",
+      brainy_tag:"AI",
+      brainy_desc:"An AI chat app that answers your questions and helps with everyday tasks.",
+      brainy_feats:"<li>Instant AI conversations</li><li>Arabic-friendly interface</li>",
+      brainy_for:"Anyone looking for a smart assistant",
+      tasko_tag:"Productivity",
+      tasko_desc:"A smart task and time management app.",
+      tasko_feats:"<li>Prioritized task lists</li><li>Daily progress tracking</li>",
+      tasko_for:"Individuals & teams",
+nidal_title:"Nidal",
+nidal_tag:"Classifieds platform · Syria",
+nidal_desc:"A Syrian classifieds marketplace on Android and iOS. I built the mobile app in partnership with Mohammed Zamlat, who developed the server, admin panel and website.",
+nidal_feats:"<li>Full Flutter UI/UX</li><li>API and backend integration</li><li>New identity: logo, colors and splash screen</li><li>Full Arabic and RTL support</li>",
+nidal_for:"Buyers and sellers in the Syrian market",
+      p1_title:"Mawa",
+      nav_home:"Home", nav_about:"About", nav_projects:"Projects", nav_skills:"Skills", nav_cv_txt:"CV",
+      eyebrow:"🇵🇸 Available for freelance — working remotely from Gaza",
+      role:"Flutter App Developer",
+      hero_title:'I\'m <span class="accent">Muhanned</span><br>I build apps that solve real problems',
+      hero_lead:"I build Flutter apps for mobile and desktop for businesses, shops and organizations — from understanding your idea and its requirements to a store-ready app that keeps working even on a weak connection.",
+      btn_work:"See my work 💼", btn_contact:"What I can do for you",
+      about_kicker:"About", about_title:"About Me",
+      about_p1:'I\'m <strong>Muhanned Kamal Alsoradi</strong>, a final-year <strong>Computer Systems Engineering</strong> student at Al-Azhar University in Gaza, and a freelance mobile app developer.',
+      about_p2:'I specialize in building complete <strong>Flutter</strong> apps — from requirements gathering and system design, through REST APIs and SQLite databases, to apps built on clean, scalable <strong>BLoC/Cubit</strong> architecture.',
+      about_p3:'I\'ve worked on projects with real impact: a displacement-camp management system as my graduation project, a financial solution used by merchants and shops in Gaza, two apps for the Palestinian Federation of Industries (PFI) within a UNDP-supported program, and a digital store for a client in Saudi Arabia. On my page <strong dir="ltr">@muhanned.code</strong> I share programming content: explainers, lessons from my own projects, and tips for people starting out.',
+      fact1_b:"Al-Azhar University – Gaza", fact1_s:"Computer Systems Engineering, graduating year",
+      fact2_b:"Freelance Developer", fact2_s:"Clients in Palestine, Saudi Arabia & Syria — remote",
+      fact3_b:"Flutter Developer Intern", fact3_s:"Palestinian Federation of Industries (PFI) — built two full apps from scratch",
+      fact4_b:"Programming content", fact4_s:"My page <bdi dir='ltr'>@muhanned.code</bdi> — coding explainers & tips",
+      proj_kicker:"My Work", proj_title:"Selected Projects", proj_lead:"Apps I built from the ground up — what they do, and who they're for.",
+      p1_title:"Mawa",
+      p2_title:"Wathiq",
+      p5_title:"Tahfeez",
+      p3_title:"Maydan",
+      soon_tag:"Coming Soon", soon_desc:"Details for this project are on the way.", for_label:"For",
+      skills_kicker:"Tools", skills_title:"Technical Skills",
+      s1:"Mobile & desktop from one codebase", s2b:"Offline-First Design", s2:"Apps that stay reliable without a steady connection",
+      s3:"Clean-architecture state management", s4b:"Databases", s4:"Cloud & local — works even offline", s5:"Connecting apps to servers",
+      s6b:"Figma & System Design", s6:"From requirements to screens", s7:"GitHub Actions for APK builds",
+      s8b:"Arabic RTL Interfaces", s8:"Experiences designed for Arabic-speaking users",
+      stats_kicker:"By the numbers", stats_title:"Quick overview",
+      stat1:"Fully shipped projects", stat2:"Apps shown here", stat3:"Countries with clients", stat4:"Clients who shared feedback",
+      form_title:"Leave a message", form_lead:"Write your name and message — one tap sends it straight to my WhatsApp.",
+      ph_name:"Name", ph_email:"Email - optional", ph_msg:"Your message here...", form_send:"Send 📤",
+      contact_title:"Have an app idea? Let's build it together", contact_lead:"Currently available for remote freelance projects.",
+      contact_whatsapp:"Message me now 📱", contact_ig:"or follow on Instagram",
+      footer_txt:"© 2026 Muhanned Kamal Alsoradi — All rights reserved", footer_made:"Made in Gaza with"
+    }
+  };
+
+  /* ===== آراء العملاء =====
+     أضف كل رأي حقيقي هنا. القسم يظهر تلقائيًا أول ما يكون فيه رأي واحد على الأقل.
+     project = اسم المشروع المرتبط (يظهر كشارة على البطاقة).
+     {name:'اسم العميل', role:{ar:'صاحب محل ...', en:'Owner, ...'}, project:'وثيق',
+      text:{ar:'نص الرأي كما قاله العميل', en:'English translation'}, stars:5},
+  */
+  const testimonials = [
+    {name:'المدهون ماركت', av:'م', role:{ar:'صاحب المحل', en:'Store owner'}, project:'وثيق',
+     text:{ar:'يعطيك العافية مهند ويسلم ايديك. عنجد حليتلي مشكلة كنت بعاني منها كتير، ووفرت علي تعب وجهد ووقت بالساعات.',
+           en:'Thank you Muhanned, great work. You really solved a problem I struggled with for a long time, and saved me hours of effort and time.'}},
+
+{name:'محمود الشيخ', av:'م', role:{ar:'عميل مشروع نضال', en:'Nidal project client'}, project:'نضال',
+text:{ar:'استاذ مهند الله يعطيك ألف عافية ويسلم إيديك يارب. شكرًا كتير على عملك الجميل والأكثر من رائع. حبيت كتير التعامل معك، أنت إنسان مجتهد وملتزم وبتستاهل كل خير والله. كل عبارات الشكر قليلة بحقك، وإن شاء الله منساوي مستقبلًا مشاريع أكبر وأقوى بكثير. كل الاحترام والتقدير لحضرتك.',
+en:"God bless your hands, Muhanned. Thank you so much for your wonderful, truly outstanding work. I really enjoyed working with you — you're hardworking and committed and you deserve all the best. No words of thanks are enough, and hopefully we'll do bigger and stronger projects together in the future. All my respect and appreciation."}},
+    {name:'عبد الشرفا', av:'ع', role:{ar:'إدارة حلقات التحفيظ', en:'Quran circles management'}, project:'تحفيظ',
+     text:{ar:'الله يعطيك العافيه ويسلمو اديك، ان شاء الله نلتقي في مشروع اكبر واكبر. انت شاب جدع وخلوق واحنا سعداء بالتعاون معك 🌹🌹',
+           en:"God bless your hands — hopefully we'll meet again on an even bigger project. You're a decent, dependable young man and we're happy to work with you 🌹🌹"}},
+    {name:'حيدر المبارك', av:'ح', role:{ar:'متجر منتجات رقمية', en:'Digital products store · Saudi Arabia'}, project:'RexSouq',
+     text:{ar:'ما شاء الله الشغل ممتاز وبالوقت المناسب.', en:'Excellent work, and delivered right on time.'}},
+    {name:'محمد عبد الرحمن', av:'م', role:{ar:'شات مع الذكاء الاصطناعي', en:'AI chat app'}, project:'BrainyChat',
+     text:{ar:'شووو هالإبداع 🔥!!!! ما شاء الله، هذا الإصدار أفضل من سابقه.', en:'What creativity 🔥!!!! This version is better than the last one.'}},
+  ];
+
+  function renderTestimonials(){
+    const sec = document.getElementById('testimonials'), grid = document.getElementById('tstGrid');
+    if(!testimonials.length){ sec.hidden = true; return; }
+    sec.hidden = false;
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    grid.innerHTML = testimonials.map(t => `
+      <div class="tst-card">
+        <span class="tst-proj">${dict[lang].tst_project} ${esc(lang==='en' ? ({'وثيق':'Wathiq','تحفيظ':'Tahfeez','نضال':'Nidal'}[t.project]||t.project) : t.project)}</span>
+        ${t.stars ? `<div class="tst-stars">${'★'.repeat(t.stars)}</div>` : ''}
+        <q>${esc(t.text[lang] || t.text.ar)}</q>
+        <div class="tst-who"><div class="tst-av">${esc(t.av || t.name.trim()[0])}</div>
+          <div><b>${esc(t.name)}</b><span>${esc((t.role && (t.role[lang] || t.role.ar)) || '')}</span></div></div>
+      </div>`).join('');
+  }
+
+  let lang = 'ar';
+  try{ lang = localStorage.getItem('lang') || 'ar'; }catch(e){}
+  const langBtn = document.getElementById('langBtn');
+
+  function updateCodeGreeting(){
+    const el = document.getElementById('codeGreeting');
+    if(!el) return;
+    const h = new Date().getHours();
+    let key;
+    if(h < 5) key = lang === 'ar' ? 'ليلة سعيدة 🌙' : 'good night 🌙';
+    else if(h < 12) key = lang === 'ar' ? 'صباح الخير ☀️' : 'good morning ☀️';
+    else if(h < 18) key = lang === 'ar' ? 'مساء الخير 🌤️' : 'good afternoon 🌤️';
+    else key = lang === 'ar' ? 'مساء النور 🌙' : 'good evening 🌙';
+    el.textContent = "'" + key + "'";
+  }
+
+  function applyLang(){
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    langBtn.textContent = lang === 'ar' ? 'EN' : 'AR';
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(dict[lang][key] !== undefined) el.innerHTML = dict[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-ph');
+      if(dict[lang][key] !== undefined) el.setAttribute('placeholder', dict[lang][key]);
+    });
+    updateCodeGreeting();
+    renderTestimonials();
+    document.querySelectorAll('.svc-link').forEach(a=>{ a.textContent = dict[lang].svc_cta; });
+  }
+  langBtn.addEventListener('click', ()=>{ lang = lang === 'ar' ? 'en' : 'ar'; try{localStorage.setItem('lang',lang);}catch(e){} applyLang(); });
+  applyLang();
+
+  // theme toggle — light is default; icon shows the mode a click will switch TO
+  let theme = document.documentElement.getAttribute('data-theme') || 'light';
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  themeBtn.addEventListener('click', ()=>{
+    theme = theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    try{ localStorage.setItem('theme', theme); }catch(e){}
+    themeBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  });
+
+  // mobile menu
+  const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', ()=>{
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open); menuBtn.textContent = open ? '✕' : '☰';
+  });
+  navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    navLinks.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); menuBtn.textContent = '☰';
+  }));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
+  document.querySelectorAll('.section-head,.proj-card,.svc-card,.step,.skill-card,.stat-card,.fact,.form-wrap').forEach((el,i)=>{
+    el.classList.add('reveal'); el.style.transitionDelay = (i%4)*70 + 'ms'; io.observe(el);
+  });
+
+  // highlight current section in nav
+  const links = [...navLinks.querySelectorAll('a')];
+  const so = new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting) links.forEach(l=>l.classList.toggle('active', l.getAttribute('href')==='#'+e.target.id));
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('section[id]').forEach(s=>so.observe(s));
+
+  // service buttons → WhatsApp with the service name pre-filled
+  document.querySelectorAll('.svc-link').forEach(a=>a.addEventListener('click', e=>{
+    e.preventDefault();
+    const svc = dict[lang][a.dataset.svc];
+    const text = lang==='ar' ? `مرحبا مهند، حابب أستفسر عن خدمة: ${svc}` : `Hi Muhanned, I'd like to ask about: ${svc}`;
+    window.open('https://wa.me/972598191753?text=' + encodeURIComponent(text), '_blank');
+  }));
+
+  // WhatsApp feedback form
+  document.getElementById('waForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const name = document.getElementById('fName').value.trim();
+    const email = document.getElementById('fEmail').value.trim();
+    const msg = document.getElementById('fMsg').value.trim();
+    let text = (lang==='ar' ? 'مرحبا مهند، اسمي ' : 'Hi Muhanned, my name is ') + name;
+    if(email) text += (lang==='ar' ? '، بريدي الإلكتروني ' : ', my email is ') + email;
+    text += '.\n' + msg;
+    window.open('https://wa.me/972598191753?text=' + encodeURIComponent(text), '_blank');
+  });
+
+  // (in-footer back-to-top button removed — floating button below covers this)
+
+  // floating back to top — shows once the page is scrolled
+  const backToTopFloat = document.getElementById('backToTopFloat');
+  backToTopFloat.addEventListener('click', ()=>{
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+  window.addEventListener('scroll', ()=>{
+    if(window.scrollY > 400) backToTopFloat.classList.add('show');
+    else backToTopFloat.classList.remove('show');
+  });
+</script>
+
+</body>
+</html>
